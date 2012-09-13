@@ -1,13 +1,12 @@
 Summary:	IETF Opus Interactive Audio Codec
 Summary(pl.UTF-8):	Opus - interaktywny kodek dźwięku wg projektu IETF
 Name:		opus
-Version:	0.9.14
+Version:	1.0.1
 Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	http://downloads.xiph.org/releases/opus/%{name}-%{version}.tar.gz
-# Source0-md5:	c7161b247a8437ae6b0f11dd872e69e8
-Patch0:		%{name}-link.patch
+# Source0-md5:	bbac19996957b404a1139816e2f357f5
 URL:		http://opus-codec.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.6
@@ -51,7 +50,6 @@ Statyczne biblioteki OPUS.
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 %{__libtoolize}
@@ -69,6 +67,9 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
+# packaged as %doc
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}/opus/html
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -83,10 +84,13 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%doc doc/html/*
 %attr(755,root,root) %{_libdir}/libopus.so
 %{_libdir}/libopus.la
 %{_includedir}/opus
 %{_pkgconfigdir}/opus.pc
+%{_aclocaldir}/opus.m4
+%{_mandir}/man3/opus_*.3*
 
 %files static
 %defattr(644,root,root,755)
