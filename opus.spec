@@ -12,6 +12,7 @@ Source0:	https://archive.mozilla.org/pub/opus/%{name}-%{version}.tar.gz
 URL:		http://opus-codec.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.6
+BuildRequires:	doxygen
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
