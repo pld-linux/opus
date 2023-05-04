@@ -12,6 +12,7 @@ BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.6
 BuildRequires:	doxygen
 BuildRequires:	libtool
+BuildRequires:	rpm-build >= 4.6
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -48,6 +49,18 @@ Static OPUS libraries.
 
 %description static -l pl.UTF-8
 Statyczne biblioteki OPUS.
+
+%package apidocs
+Summary:	API documentation for OPUS library
+Summary(pl.UTF-8):	Dokumentacja API biblioteki OPUS
+Group:		Documentation
+BuildArch:	noarch
+
+%description apidocs
+API documentation for OPUS library.
+
+%description apidocs -l pl.UTF-8
+Dokumentacja API biblioteki OPUS.
 
 %prep
 %setup -q
@@ -86,7 +99,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc doc/html/*
 %attr(755,root,root) %{_libdir}/libopus.so
 %{_libdir}/libopus.la
 %{_includedir}/opus
@@ -97,3 +109,7 @@ rm -rf $RPM_BUILD_ROOT
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libopus.a
+
+%files apidocs
+%defattr(644,root,root,755)
+%doc doc/html/{search,*.css,*.html,*.js,*.png}
