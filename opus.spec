@@ -1,12 +1,12 @@
 Summary:	IETF Opus Interactive Audio Codec
 Summary(pl.UTF-8):	Opus - interaktywny kodek dźwięku wg projektu IETF
 Name:		opus
-Version:	1.4
+Version:	1.5
 Release:	1
 License:	BSD
 Group:		Libraries
 Source0:	https://downloads.xiph.org/releases/opus/%{name}-%{version}.tar.gz
-# Source0-md5:	0d89c15268c5c5984f583d7997d2a148
+# Source0-md5:	1b5270628bc6b1e9dd1a5a29ff697c64
 URL:		https://opus-codec.org/
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1.6
