@@ -1,3 +1,7 @@
+#
+# Conditional build:
+%bcond_without	static_libs	# static library
+
 Summary:	IETF Opus Interactive Audio Codec
 Summary(pl.UTF-8):	Opus - interaktywny kodek dźwięku wg projektu IETF
 Name:		opus
@@ -13,6 +17,7 @@ BuildRequires:	automake >= 1.6
 BuildRequires:	doxygen
 BuildRequires:	libtool
 BuildRequires:	rpm-build >= 4.6
+BuildRequires:	rpmbuild(macros) >= 1.527
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -73,7 +78,8 @@ Dokumentacja API biblioteki OPUS.
 %{__automake}
 %configure \
 	--enable-custom-modes \
-	--disable-silent-rules
+	--disable-silent-rules \
+	%{__enable_disable static_libs static}
 %{__make}
 
 %install
@@ -106,9 +112,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_aclocaldir}/opus.m4
 %{_mandir}/man3/opus_*.3*
 
+%if %{with static_libs}
 %files static
 %defattr(644,root,root,755)
 %{_libdir}/libopus.a
+%endif
 
 %files apidocs
 %defattr(644,root,root,755)
